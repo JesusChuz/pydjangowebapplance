@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Welcome To Shoe'N</title>
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>Edit Settings</h3>
+<hr/>
+
+<p>{{ user.username }}'s profile - Premium: {{ user.profile.is_premium }}</p>
+
+<!-- Display messages -->
+{% if messages %}
+    <div class="messages">
+        {% comment %} {% for message in messages %} {% endcomment %}
+        <div class="alert ">
+            {{ message }}
+            <a class="btn btn-primary" href="{% url 'create_profile_page' %}">Create Profile</a>                    
+        </div>
+        {% comment %} {% endfor %} {% endcomment %}
+    </div>
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <button type="submit">Save changes</button>
+</form><br>
+{% if not user.profile.is_premium %}
+    <a href="{% url 'upgrade_to_premium' %}" class="btn btn-primary">Upgrade to Premium</a>
+{% endif %}
+
+
+
+
+<style>
+    body {
+        background: rgb(235, 235, 219, 1);
+    }
+</style>
+
+
+{% endblock %}
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8"/>
+<title>Welcome To Shoe'N</title>
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<h3>Upgrade To Shoe'N Premium</h3>
+<hr>
+<form action="{% url 'upgrade_to_premium' %}" method="POST">
+    {% csrf_token %}
+    <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="{{ stripe_publishable_key }}"
+        data-amount="1000"
+        data-name="Premium Subscription"
+        data-description="Access to premium features"
+        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+        data-locale="auto">
+    </script>
+</form>
+
+
+<style>
+    body {
+        background: rgb(235, 235, 219, 1);
+    }
+</style>
+
+{% endblock %}
+</html>
