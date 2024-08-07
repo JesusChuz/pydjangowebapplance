@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shoe'N Badge Earned</title>
+    {% load static %}
+    <style>
+        body {
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Congratulations!</h1>
+    <h2>You earned the "{{ badge_name }}" badge!</h2>
+
+    {% comment %} <img src="{% static 'shoen/images/badges/nice_collection_badge.png' %}" alt="{{ badge_name }} Badge" /> {% endcomment %}
+
+    <a href="{% url 'members:my_collection' %}">
+        <button class="btn btn-primary">My Virtual Closet</button>
+    </a>
+
+    <style>
+        body {
+            background: rgb(235, 235, 219, 1);
+        }
+    </style>
+
+
+</body>
+</html>
