@@ -30,7 +30,6 @@ dist
 
 # Python Environments
 .env
-.venv
 env/
 venv/
 ENV/
